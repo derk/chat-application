@@ -287,7 +287,7 @@ var chatApplication = new ChatApplication();
         $("#task-add-task").val("");
         $("#task-add-user").val("");
         $("#task-add-date").val("");
-        jqchat(".task-user-label").remove();
+        jqchat(".task-user-label").parent().remove();
         hideResults();
       } else if (toggleClass === "meeting-action-event-panel") {
         $("#event-add-summary").val("");
@@ -855,7 +855,7 @@ var chatApplication = new ChatApplication();
     function addTaskUserLabel(name, fullname) {
       var $usersList = $('.task-users-list');
       var html = $usersList.html();
-      html += "<span class='uiMention'><a href='javascript:void(0)' class=' task-user-label' data-fullname='" + fullname + "' data-name='"+name+"'>"+fullname+"&nbsp;&nbsp;<i class='uiIconClose uiIconLightGray task-user-remove'></i></a></span>";
+      html += "<span class='uiMention'><a href='javascript:void(0)' class='task-user-label' data-fullname='" + fullname + "' data-name='"+name+"'>"+fullname+"&nbsp;&nbsp;<i class='uiIconClose uiIconLightGray task-user-remove'></i></a></span>";
       $usersList.html(html);
       var $taskAddUser = $('#task-add-user');
       $taskAddUser.val("");
@@ -887,7 +887,7 @@ var chatApplication = new ChatApplication();
       $uitext.attr("data-id", chatApplication.targetUser);
 
       chatApplication.getUsers(chatApplication.targetUser, function (jsonData) {
-        $(".team-user-label").remove();
+        $(".team-user-label").parent().remove();
 
         var users = TAFFY(jsonData.users);
         var users = users();
@@ -1687,7 +1687,7 @@ ChatApplication.prototype.showRooms = function(rooms) {
   /**
    * FAVORITES
    */
-  out += "<tr class='header-room header-favorites "+(this.showFavorites ? "open":"") + "'><td colspan='3' style='border-top: 0;'>";
+  out += "<tr class='header-room accordion-heading header-favorites "+(this.showFavorites ? "open":"") + "'><td colspan='3' style='border-top: 0;'>";
   if (this.showFavorites) classArrow="uiIconChatArrowDown uiIconChatLightGray"; else classArrow = "uiIconChatArrowRight uiIconChatLightGray";
   out += chatBundleData.exoplatform_chat_favorites;
   out += "<div class='nav pull-right uiDropdownWithIcon'><div class='uiAction iconDynamic'><i class='"+classArrow+" uiIconLightGray'></i></div></div>";
@@ -1711,7 +1711,7 @@ ChatApplication.prototype.showRooms = function(rooms) {
     }
   });
   if (roomsFavorites.count() === 0 && this.showFavorites) {
-    out += "<tr class='users-online empty'><td colspan='3'>" + chatBundleData.exoplatform_chat_no_favorite + "</td></tr>";
+    out += "<tr class='users-online accordion-body empty'><td colspan='3'>" + chatBundleData.exoplatform_chat_no_favorite + "</td></tr>";
   }
 
   var xOffline = ""; if (chatApplication.showOffline) xOffline=" btn active";
@@ -1722,7 +1722,7 @@ ChatApplication.prototype.showRooms = function(rooms) {
   /**
    * USERS
    */
-  out += "<tr class='header-room header-people "+(this.showPeople ? "open":"") + "'><td colspan='3'>";
+  out += "<tr class='header-room accordion-heading header-people "+(this.showPeople ? "open":"") + "'><td colspan='3'>";
   if (this.showPeople) classArrow="uiIconChatArrowDown uiIconChatLightGray"; else classArrow = "uiIconChatArrowRight uiIconChatLightGray";
   out += chatBundleData.exoplatform_chat_people;
   out += '<span class="room-total total-people badgeDefault badgePrimary mini"></span>';
@@ -1752,13 +1752,13 @@ ChatApplication.prototype.showRooms = function(rooms) {
     }
   });
   if (roomsPeople.count() === 0 && this.showPeople) {
-    out += "<tr class='users-online empty'><td colspan='3'>" + chatBundleData.exoplatform_chat_no_connection + "</td></tr>";
+    out += "<tr class='users-online accordion-body empty'><td colspan='3'>" + chatBundleData.exoplatform_chat_no_connection + "</td></tr>";
   }
 
   /**
    * TEAMS
    */
-  out += "<tr class='header-room header-teams "+(this.showTeams ? "open":"") + "'><td colspan='3'>";
+  out += "<tr class='header-room accordion-heading header-teams "+(this.showTeams ? "open":"") + "'><td colspan='3'>";
   if (this.showTeams) classArrow="uiIconChatArrowDown uiIconChatLightGray"; else classArrow = "uiIconChatArrowRight uiIconChatLightGray";
   out += chatBundleData.exoplatform_chat_teams;
   out += '<span class="room-total total-teams badgeDefault badgePrimary mini"></span>';
@@ -1788,13 +1788,13 @@ ChatApplication.prototype.showRooms = function(rooms) {
   });
 
   if (roomsTeams.count() === 0 && this.showTeams) {
-    out += "<tr class='users-online empty'><td colspan='3'>" + chatBundleData.exoplatform_chat_no_team + "</td></tr>";
+    out += "<tr class='users-online accordion-body empty'><td colspan='3'>" + chatBundleData.exoplatform_chat_no_team + "</td></tr>";
   }
 
   /**
    * SPACES
    */
-  out += "<tr class='header-room header-spaces "+(this.showSpaces ? "open":"") + "'><td colspan='3'>";
+  out += "<tr class='header-room accordion-heading header-spaces "+(this.showSpaces ? "open":"") + "'><td colspan='3'>";
   if (this.showSpaces) classArrow="uiIconChatArrowDown uiIconChatLightGray"; else classArrow = "uiIconChatArrowRight uiIconChatLightGray";
   out += chatBundleData.exoplatform_chat_spaces;
   out += '<span class="room-total total-spaces badgeDefault badgePrimary mini"></span>';
@@ -1823,7 +1823,7 @@ ChatApplication.prototype.showRooms = function(rooms) {
   });
 
   if (roomsSpaces.count() === 0 && this.showSpaces) {
-    out += "<tr class='users-online empty'><td colspan='3'>" + chatBundleData.exoplatform_chat_no_space + "</td></tr>";
+    out += "<tr class='users-online accordion-body empty'><td colspan='3'>" + chatBundleData.exoplatform_chat_no_space + "</td></tr>";
   }
 
   out += '</table>';
@@ -1873,7 +1873,7 @@ ChatApplication.prototype.showRooms = function(rooms) {
 ChatApplication.prototype.getRoomHtml = function(room, roomPrevUser) {
   var out = "";
   if (room.user!==roomPrevUser) {
-    out += '<tr id="users-online-'+room.user.replace(".", "-")+'" class="users-online">';
+    out += '<tr id="users-online-'+room.user.replace(".", "-")+'" class="users-online accordion-body">';
     out += '<td class="td-status">';
     out += '<i class="';
     if (room.status === "space" || room.status === "team") {
@@ -1892,7 +1892,7 @@ ChatApplication.prototype.getRoomHtml = function(room, roomPrevUser) {
     if (room.isActive=="true") {
       out += '<span user-data="'+room.user+'" room-data="'+room.room+'" class="room-link" data-fullname="'+room.escapedFullname+'">'+room.escapedFullname+'</span>';
     } else {
-      out += '<span class="room-inactive">'+room.user+'</span>';
+      out += '<span class="room-inactive muted">'+room.user+'</span>';
     }
     out += '</td>';
     out += '<td>';
@@ -2359,7 +2359,7 @@ ChatApplication.prototype.jQueryForUsersTemplate = function() {
     var $uitext = jqchat("#team-modal-name");
     $uitext.val("");
     $uitext.attr("data-id", "---");
-    jqchat(".team-user-label").remove();
+    jqchat(".team-user-label").parent().remove();
     var $userResults = jqchat(".team-users-results");
     $userResults.css("display", "none");
     $userResults.html("");

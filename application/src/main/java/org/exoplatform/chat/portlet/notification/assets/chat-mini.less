@@ -160,7 +160,7 @@
 
   .message {
     padding:10px;
-  border-top:1px solid #ccc;
+    background: none;
     input {
      width:100%;
    margin:0;
@@ -258,14 +258,12 @@
   .msAction {
     cursor: pointer;
     visibility: hidden;
-    color: @linkColor;
     font-size: 12px;
     a {
       font-size: 12px;
     }
   }
   .msTimePost {
-    color: #999;
     font-size: 12px;
     position: absolute;
     right: 0;
@@ -427,21 +425,5 @@
 		position: absolute;
 		top: 10px;
 		.translate(-50%, 0);
-	}
-	.notify-info {
-		background-color: @linkColor;
-		color: @white;
-		display: inline-block;
-		font-size: 11px;
-		height: 15px;
-		margin-right: 5px;
-		line-height: 15px;
-		min-width: 10px;
-		padding: 0 4px;
-		text-align: center;
-		vertical-align: middle;
-    font-weight: bold;
-    .border-radius(2px);    
-  	.box-shadow(1px 1px 1px 0px rgba(0,0,0,0.2));
 	}
 }
