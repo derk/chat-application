@@ -1691,7 +1691,7 @@ ChatApplication.prototype.showRooms = function(rooms) {
   if (this.showFavorites) classArrow="uiIconChatArrowDown uiIconChatLightGray"; else classArrow = "uiIconChatArrowRight uiIconChatLightGray";
   out += chatBundleData.exoplatform_chat_favorites;
   out += "<div class='nav pull-right uiDropdownWithIcon'><div class='uiAction iconDynamic'><i class='"+classArrow+" uiIconLightGray'></i></div></div>";
-  out += '<span class="room-total total-favorites">' + chatBundleData.exoplatform_chat_no_favorite + '</span>';
+  out += '<span class="room-total total-favorites badgeDefault badgePrimary mini">' + chatBundleData.exoplatform_chat_no_favorite + '</span>';
   out += "</td></tr>"
 
   var roomsFavorites = rooms();
@@ -1725,7 +1725,7 @@ ChatApplication.prototype.showRooms = function(rooms) {
   out += "<tr class='header-room header-people "+(this.showPeople ? "open":"") + "'><td colspan='3'>";
   if (this.showPeople) classArrow="uiIconChatArrowDown uiIconChatLightGray"; else classArrow = "uiIconChatArrowRight uiIconChatLightGray";
   out += chatBundleData.exoplatform_chat_people;
-  out += '<span class="room-total total-people"></span>';
+  out += '<span class="room-total total-people badgeDefault badgePrimary mini"></span>';
   out += "<div class='nav pull-right uiDropdownWithIcon'><div class='uiAction iconDynamic'><i class='"+classArrow+" uiIconLightGray'></i></div></div>";
   out += "<ul class='nav pull-right uiDropdownWithIcon btn-top-history btn-top-history-people' style='margin-right: 5px;'><li><div class='actionIcon btn-history"+xPeopleHistory+"' data-type='people' href='javaScript:void(0)' data-toggle='tooltip' data-placement='bottom' title='" + chatBundleData.exoplatform_chat_show_history + "'><i class='uiIconChatClock uiIconChatLightGray'></i></div></li></ul>";
   out += "<ul class='nav pull-right uiDropdownWithIcon btn-top-offline' style='margin-right: 5px;'><li><div class='actionIcon btn-offline"+xOffline+"' data-type='people' href='javaScript:void(0)' data-toggle='tooltip' data-placement='bottom' title='" + chatBundleData.exoplatform_chat_show_users + "'><i class='uiIconChatMember uiIconChatLightGray'></i></div></li></ul>";
@@ -1761,7 +1761,7 @@ ChatApplication.prototype.showRooms = function(rooms) {
   out += "<tr class='header-room header-teams "+(this.showTeams ? "open":"") + "'><td colspan='3'>";
   if (this.showTeams) classArrow="uiIconChatArrowDown uiIconChatLightGray"; else classArrow = "uiIconChatArrowRight uiIconChatLightGray";
   out += chatBundleData.exoplatform_chat_teams;
-  out += '<span class="room-total total-teams"></span>';
+  out += '<span class="room-total total-teams badgeDefault badgePrimary mini"></span>';
   out += "<div class='nav pull-right uiDropdownWithIcon'><div class='uiAction iconDynamic'><i class='"+classArrow+" uiIconLightGray'></i></div></div>";
   out += "<ul class='nav pull-right uiDropdownWithIcon btn-top-history btn-top-history-teams' style='margin-right: 5px;'><li><div class='actionIcon btn-history"+xTeamsHistory+"' data-type='team' href='javaScript:void(0)' data-toggle='tooltip' title='" + chatBundleData.exoplatform_chat_show_history + "'><i class='uiIconChatClock uiIconChatLightGray'></i></div></li></ul>";
   out += "<ul class='nav pull-right uiDropdownWithIcon btn-top-add-actions' style='margin-right: 5px;'><li><div class='actionIcon btn-add-team' href='javaScript:void(0)' data-toggle='tooltip' data-placement='bottom' title='" + chatBundleData.exoplatform_chat_create_team + "'><i class='uiIconChatSimplePlusMini uiIconChatLightGray'></i></div></li></ul>";
@@ -1797,7 +1797,7 @@ ChatApplication.prototype.showRooms = function(rooms) {
   out += "<tr class='header-room header-spaces "+(this.showSpaces ? "open":"") + "'><td colspan='3'>";
   if (this.showSpaces) classArrow="uiIconChatArrowDown uiIconChatLightGray"; else classArrow = "uiIconChatArrowRight uiIconChatLightGray";
   out += chatBundleData.exoplatform_chat_spaces;
-  out += '<span class="room-total total-spaces"></span>';
+  out += '<span class="room-total total-spaces badgeDefault badgePrimary mini"></span>';
   out += "<div class='nav pull-right uiDropdownWithIcon'><div class='uiAction iconDynamic'><i class='"+classArrow+" uiIconLightGray'></i></div></div>";
   out += "<ul class='nav pull-right uiDropdownWithIcon btn-top-history btn-top-history-spaces' style='margin-right: 5px;'><li><div class='actionIcon btn-history"+xSpacesHistory+"' data-type='space' href='javaScript:void(0)' data-toggle='tooltip' title='" + chatBundleData.exoplatform_chat_show_history + "'><i class='uiIconChatClock uiIconChatLightGray'></i></div></li></ul>";
   out += "</td></tr>";
@@ -1897,7 +1897,7 @@ ChatApplication.prototype.getRoomHtml = function(room, roomPrevUser) {
     out += '</td>';
     out += '<td>';
     if (Math.round(room.unreadTotal)>0) {
-      out += '<span class="room-total" style="float:right;" data="'+room.unreadTotal+'">'+room.unreadTotal+'</span>';
+      out += '<span class="room-total badgeDefault badgePrimary mini" style="float:right;" data="'+room.unreadTotal+'">'+room.unreadTotal+'</span>';
     }
     else {
       out+= '<i class="uiIconChatFavorite pull-right';
@@ -1930,8 +1930,8 @@ ChatApplication.prototype.loadRoom = function() {
     if (this.isDesktopView()) {
       var $targetUser = jqchat("#users-online-"+this.targetUser.replace(".", "-"));
       $targetUser.addClass("accordion-active");
-      jqchat(".room-total").removeClass("room-total-white");
-      $targetUser.find(".room-total").addClass("room-total-white");
+      jqchat(".room-total").removeClass("badgeWhite");
+      $targetUser.find(".room-total").addClass("badgeWhite");
     }
 
     jqchat("#room-detail").css("display", "block");
@@ -2328,8 +2328,8 @@ ChatApplication.prototype.jQueryForUsersTemplate = function() {
   if (this.isDesktopView() && this.targetUser!==undefined) {
     var $targetUser = jqchat("#users-online-"+this.targetUser.replace(".", "-"));
     $targetUser.addClass("accordion-active");
-    jqchat(".room-total").removeClass("room-total-white");
-    $targetUser.find(".room-total").addClass("room-total-white");
+    jqchat(".room-total").removeClass("badgeWhite");
+    $targetUser.find(".room-total").addClass("badgeWhite");
   }
 
   jqchat(".header-room").on("click", function() {
